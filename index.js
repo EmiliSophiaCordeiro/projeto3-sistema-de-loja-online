@@ -1,21 +1,32 @@
 const Usuario = require("./class/Usuario")
-const Pedido = require("./class/Pedido")
-const Produto = require("./class/Produto")
+const Cliente = require("./class/Cliente")
 const Administrador = require("./class/Administrador")
+const Produto = require("./class/Produto")
+const Pedido = require("./class/Pedido")
 
-const cliente = new Usuario("Maria", 20)
-const produto = new Produto("Camisa", 50, 10)
-cliente.adicionarProduto(produto)
-
-console.log(cliente.carrinho)
-
-const pedido = new Pedido(cliente, cliente.carrinho)
-console.log(pedido.calcularTotal())
+const usuario = new Usuario("Genérico", 40)
+console.log(usuario.acessoPainel())
+console.log("=================================")
 
 const admin = new Administrador("João", 30)
-const produtoAdmin = new Produto("Tênis", 200, 5)
-admin.adicionarProduto(produtoAdmin)
+console.log(admin.acessoPainel())
 
-console.log(admin.produtos)
+const produto1 = new Produto("Camisa", 50, 10)
+const produto2 = new Produto("Tênis", 200, 5)
 
+admin.adicionarProduto(produto1)
+admin.adicionarProduto(produto2)
 
+console.log("Produtos cadastrados pelo admin:", admin.produtos)
+console.log("=================================")
+
+const cliente = new Cliente("Maria", 20)
+console.log(cliente.acessoPainel())
+
+cliente.adicionarProduto(produto1)
+cliente.adicionarProduto(produto2)
+
+console.log("Carrinho da cliente:", cliente.carrinho)
+
+const pedido = new Pedido(cliente, cliente.carrinho)
+console.log("Valor total do pedido:", pedido.calcularTotal())
